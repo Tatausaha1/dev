@@ -1,59 +1,55 @@
 # IMAM V6.1 - Integrated Madrasah Academic Management
 ### Portal Pelayanan Terpadu Satu Pintu (PTSP) Digital - MAN 1 Hulu Sungai Tengah
 
-**IMAM V6.1** adalah platform manajemen pelayanan publik dan internal madrasah berbasis cloud yang dirancang untuk mendukung transformasi digital menuju Zona Integritas (WBK/WBBM).
+**IMAM V6.1** adalah ekosistem manajemen madrasah modern berbasis cloud yang mengintegrasikan AI (Gemini), Firestore, dan Real-time Database untuk pelayanan publik yang transparan dan akuntabel.
 
 ---
 
-## 🚨 Git Disaster Recovery (Jika Push Gagal/Terlalu Berat)
+## 🚀 Panduan Deploy ke Vercel (Recommended)
 
-Jika Anda lupa mengatur `.gitignore` dan Git mencoba mengunggah ribuan file dari `node_modules`, jalankan 3 perintah sakti ini secara berurutan:
+Platform ini dioptimalkan sepenuhnya untuk infrastruktur **Vercel**. Ikuti langkah-langkah berikut untuk mengaktifkan portal Anda secara global:
 
-### 1. Paksa Git "Melupakan" File Sampah
-Ini akan menghapus file dari daftar unggahan tapi **TIDAK** menghapus folder asli di laptop Anda:
-```bash
-git rm -r --cached .
-```
+### 1. Persiapan Repositori GitHub
+Pastikan seluruh kode sumber telah diunggah ke repositori GitHub Anda. 
+*   **PENTING**: File `.gitignore` harus ada untuk memastikan folder `node_modules` dan file `.env` lokal tidak ikut terunggah (keamanan kredensial).
 
-### 2. Tambahkan Ulang dengan Filter Baru
-Pastikan file `.gitignore` sudah ada di folder root, lalu jalankan:
-```bash
-git add .
-```
+### 2. Hubungkan ke Vercel
+1. Buka [Vercel Dashboard](https://vercel.com/) dan login menggunakan akun GitHub Anda.
+2. Klik tombol **"Add New"** lalu pilih **"Project"**.
+3. Cari nama repositori proyek ini dan klik **"Import"**.
 
-### 3. Commit Pembersihan
-```bash
-git commit -m "chore: remove untracked node_modules and cleanup repository"
-git push origin main
-```
+### 3. Konfigurasi Variabel Lingkungan (KRUSIAL)
+Agar fitur kecerdasan buatan (IMAM AI Brain) berfungsi, Anda **WAJIB** menambahkan API Key sebelum melakukan deployment:
+1. Pada halaman konfigurasi sebelum deploy, buka bagian **Environment Variables**.
+2. Tambahkan variabel baru:
+   - **Key**: `API_KEY`
+   - **Value**: `[Masukkan Kode Gemini API Key Anda]`
+3. Tambahkan juga (opsional untuk redundansi):
+   - **Key**: `GEMINI_API_KEY`
+   - **Value**: `[Masukkan Kode Gemini API Key Anda]`
+4. Klik **Add**.
 
----
+### 4. Pengaturan Build & Output
+Sistem akan mendeteksi **Vite** secara otomatis. Pastikan pengaturan berikut benar:
+- **Framework Preset**: `Vite`
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
 
-## 🚀 Fitur Utama (Core Modules)
-
-- **Gateway Terpadu**: Jalur tunggal untuk pengajuan layanan siswa, alumni, dan umum.
-- **Synchronized Tracking**: Pelacakan status berkas secara real-time dengan ID unik (REQ-YYYY-xxxx).
-- **Node GTK Internal**: Manajemen presensi, laporan kinerja (tukin), dan integrasi EMIS 4.0.
-- **Cloud Archiving**: Penyimpanan dokumen terenkripsi dengan teknologi Hybrid (Base64 & Cloud Storage).
-- **IMAM Brain AI**: Asisten virtual cerdas berbasis Google Gemini 3.0 untuk bantuan layanan 24/7.
-- **Live Queue Manager**: Sistem antrean loket terintegrasi dengan Voice-over-IP AI.
-
----
-
-## 🛠 Spesifikasi Teknis (Tech Stack)
-
-- **Frontend**: React 19 (TypeScript) + Tailwind CSS.
-- **Database**: Firebase Firestore (NoSQL) dengan Sinkronisasi Real-time.
-- **Engine AI**: Google Gemini API (Flash 3.0 & Pro Preview).
+### 5. Klik "Deploy"
+Tunggu proses build selama kurang lebih 1-2 menit. Vercel akan memberikan domain publik (misal: `ptsp-man1hst.vercel.app`) yang bisa langsung diakses.
 
 ---
 
-## 🛡️ Keamanan & Privasi
-Sistem ini mengimplementasikan **Security Rules Firestore level-4**:
-- Pemohon hanya dapat membaca data miliknya sendiri.
-- Log aktivitas bersifat *Append-only* (tidak dapat dihapus).
+## 🛠 Troubleshooting Sinkronisasi
+Jika Anda mengalami kendala sinkronisasi antara AI Studio dan GitHub:
+1. Gunakan perintah Git manual di terminal lokal Anda.
+2. Pastikan Anda melakukan `git pull` terlebih dahulu sebelum melakukan `push` untuk menghindari konflik versi.
+3. Cek status koneksi pada file `SystemHealthAlert.tsx` jika database terasa lambat.
 
 ---
+
+## 🛡️ Keamanan & Privasi Data
+Portal ini menggunakan **Firestore Security Rules** untuk melindungi data sensitif GTK. Data hanya dapat diakses secara detail oleh pengguna yang telah terverifikasi melalui **Authentication Gate** di menu samping.
 
 &copy; 2026 **IMAM Core Node** | Madrasah Cloud Service MAN 1 Hulu Sungai Tengah.  
 *Bakambang, Babuah, Batuah.*

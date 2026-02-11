@@ -6,17 +6,17 @@ import { doc, onSnapshot, collection, query, orderBy, limit } from "https://www.
 import { LOGOS } from './constants.ts';
 import { db, apiService } from './services/apiService.ts';
 
-import { LogoHeader } from './components/LogoHeader.tsx';
-import { SideMenu } from './SideMenu.tsx';
-import { Hero } from './components/Hero.tsx';
+import { LogoHeader } from './components/layouts/LogoHeader.tsx';
+import { SideMenu } from './components/layouts/SideMenu.tsx';
+import { Hero } from './components/features/Hero.tsx';
 import { HomePTSP } from './components/HomePTSP.tsx';
-import { CompetitionInfo } from './CompetitionInfo.tsx';
-import { Sponsors } from './Sponsors.tsx';
-import { RegistrationForm } from './RegistrationForm.tsx';
-import { RegistryTable } from './RegistryTable.tsx';
+import { CompetitionInfo } from './pages/CompetitionInfo.tsx';
+import { Sponsors } from './components/features/Sponsors.tsx';
+import { RegistrationForm } from './components/features/forms/RegistrationForm.tsx';
+import { RegistryTable } from './components/common/RegistryTable.tsx';
 import { AdminDashboard } from './components/AdminDashboard.tsx';
-import { GTKReportForm } from './GTKReportForm.tsx'; 
-import { FloatingInteractionHub } from './Common.tsx';
+import { GTKReportForm } from './components/features/forms/GTKReportForm.tsx'; 
+import { FloatingInteractionHub } from './components/common/InteractionHub.tsx';
 import { PTSPSection } from './components/PTSPSection.tsx';
 import { PortalInformasi } from './components/PortalInformasi.tsx';
 import { RecentActivity } from './components/RecentActivity.tsx';
