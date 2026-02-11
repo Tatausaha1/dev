@@ -1,0 +1,8 @@
+{
+  "name": "PTSP-MANsatu ",
+  "description": "Pelayanan Publik ",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
